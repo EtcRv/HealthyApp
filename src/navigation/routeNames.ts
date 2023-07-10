@@ -1,0 +1,5 @@
+export const TAB_HOME = 'TAB_HOME';
+export const TAB_AUTHENTICATION = 'TAB_AUTHENTICATION';
+export const TAB_LOGIN = 'TAB_LOGIN';
+export const TAB_REGISTER = 'TAB_REGISTER';
+export const TAB_FORGETPASSWORD = 'TAB_FORGETPASSWORD';
