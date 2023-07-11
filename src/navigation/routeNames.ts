@@ -1,4 +1,4 @@
-export const TAB_HOME = 'TAB_HOME';
+export const HOME_SCREEN = 'HOME_SCREEN';
 export const TAB_AUTHENTICATION = 'TAB_AUTHENTICATION';
 export const TAB_LOGIN = 'TAB_LOGIN';
 export const TAB_REGISTER = 'TAB_REGISTER';

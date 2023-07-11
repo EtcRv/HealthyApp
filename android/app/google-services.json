@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "146476586304-kmr9gdmqaoi5pge7f6g1spvrin7e1qr6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.healthyapp",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
           "client_id": "146476586304-uvnl7rn87jclk7tvkdqb13eu9c7h3cng.apps.googleusercontent.com",
           "client_type": 3
         }

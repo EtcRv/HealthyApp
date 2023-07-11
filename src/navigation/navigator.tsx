@@ -22,8 +22,8 @@ const Navigator = ({appState}: NavProps) => {
         <Stack.Navigator screenOptions={options}>
           <Stack.Screen
             options={options}
-            component={Screens.AuthenticationScreen}
-            name={names.TAB_AUTHENTICATION}
+            component={Screens.HomeScreen}
+            name={names.HOME_SCREEN}
           />
         </Stack.Navigator>
       );

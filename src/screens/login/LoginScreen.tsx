@@ -70,10 +70,63 @@ const LoginScreen = () => {
                     quequan: childData.user.quequan,
                   }),
                 );
-                // dispatch(updateAppState(true));
+                dispatch(updateAppState(true));
               }
             });
           });
+        });
+    }
+  };
+
+  const onRestore = (user: any) => {
+    let flag = false;
+    usersDatabase.on('value', snapshot => {
+      snapshot.forEach((childSnapshot): any => {
+        const childData = childSnapshot.val();
+        if (childData.user.uuid === user.id) {
+          flag = true;
+          dispatch(
+            updateUser({
+              uuid: childData.user.uuid,
+              email: childData.user.email,
+              name: childData.user.name,
+              age: childData.user.age,
+              gender: childData.user.gender,
+              noio: childData.user.noio,
+              quequan: childData.user.quequan,
+            }),
+          );
+        }
+      });
+    });
+
+    if (!flag) {
+      const newReference = usersDatabase.push();
+
+      newReference
+        .set({
+          user: {
+            uuid: user.id,
+            name: user.name,
+            email: user.email,
+            age: 0,
+            gender: '',
+            quequan: '',
+            noio: '',
+          },
+        })
+        .then(() => {
+          dispatch(
+            updateUser({
+              uuid: user.id,
+              email: user.email,
+              name: user.name,
+              age: 0,
+              gender: '',
+              noio: '',
+              quequan: '',
+            }),
+          );
         });
     }
   };
@@ -85,16 +138,16 @@ const LoginScreen = () => {
       const googleCredential = auth.GoogleAuthProvider.credential(idToken);
       await auth().signInWithCredential(googleCredential);
       const currentUser = await GoogleSignin.getCurrentUser();
-      console.log('currentUser: ', currentUser);
-    } catch (error: any) {
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-      } else if (error.code === statusCodes.IN_PROGRESS) {
-      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+      onRestore(currentUser?.user);
+      dispatch(updateAppState(true));
+    } catch (err: any) {
+      if (err.code === statusCodes.SIGN_IN_CANCELLED) {
+      } else if (err.code === statusCodes.IN_PROGRESS) {
+      } else if (err.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
         setError('Can not connect to Google Drive! Please try again later.');
       } else {
-        console.log(error);
+        console.log('error: ', err);
       }
-      // dispatch(updateAppState(true));
     }
   };
 
