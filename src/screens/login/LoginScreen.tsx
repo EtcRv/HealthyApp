@@ -74,6 +74,14 @@ const LoginScreen = () => {
               }
             });
           });
+        })
+        .catch(err => {
+          if (err.code === 'auth/wrong-password') {
+            setError(
+              'The password is invalid or the user does not have a password',
+            );
+          }
+          console.log('err: ', err);
         });
     }
   };

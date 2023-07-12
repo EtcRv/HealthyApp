@@ -20,10 +20,15 @@ const Navigator = ({appState}: NavProps) => {
     case true:
       return (
         <Stack.Navigator screenOptions={options}>
-          <Stack.Screen
+          {/* <Stack.Screen
             options={options}
             component={Screens.HomeScreen}
             name={names.HOME_SCREEN}
+          /> */}
+          <Stack.Screen
+            options={options}
+            component={Screens.PredictCovidScreen}
+            name={names.PREDICT_COVID_SCREEN}
           />
         </Stack.Navigator>
       );

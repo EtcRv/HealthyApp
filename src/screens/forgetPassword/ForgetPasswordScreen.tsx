@@ -8,9 +8,21 @@ import {
 } from 'react-native';
 import {Input} from '@components';
 import {useState} from 'react';
+import auth from '@react-native-firebase/auth';
 
 const ForgetPasswordScreen = () => {
   const [email, setEmail] = useState('');
+  const [success, setSuccess] = useState('');
+
+  const getNewPassword = () => {
+    auth()
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        setEmail('');
+        setSuccess('Kiểm tra mail để cập nhật mật khẩu của bạn!');
+      });
+  };
+
   return (
     <SafeAreaView style={{backgroundColor: '#fff', flex: 1}}>
       <AuthenticationHeader />
@@ -31,8 +43,11 @@ const ForgetPasswordScreen = () => {
             secureTextEntry={false}
           />
         </View>
+        {success !== '' && (
+          <Text style={{color: '#13c26a', marginVertical: 4}}>{success}</Text>
+        )}
         <View style={styles.buttonWrapper}>
-          <TouchableOpacity style={styles.loginBtn}>
+          <TouchableOpacity style={styles.loginBtn} onPress={getNewPassword}>
             <Text
               style={{
                 color: '#fff',
