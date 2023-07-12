@@ -1,5 +1,5 @@
 {
-  "extends": "@tsconfig/react-native/tsconfig.json",
+  "extends": "@tsconfig/react-n de ative/tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",                                     /* Specify the base directory to resolve non-relative module names. */
     "paths": {
